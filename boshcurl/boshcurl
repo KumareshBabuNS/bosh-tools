@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+bosh_path=$1  
+if [[ -z $bosh_path ]]; then  
+  echo -e "USAGE:\n boshcurl /deployments\n boshcurl /info\n boshcurl /tasks\n\n Also, requires environment variables bosh_username, bosh_password and bosh_target to be defined.\n"
+  exit 1
+fi  
+if [[ -z ${bosh_username} || -z ${bosh_password} || -z ${bosh_target} ]]; then  
+  echo 'Requires environment variables ${bosh_username} ${bosh_password} and ${bosh_target}'
+  exit 1
+fi  
+curl --location -ks -u ${bosh_username}:${bosh_password} ${bosh_target}${bosh_path} 
