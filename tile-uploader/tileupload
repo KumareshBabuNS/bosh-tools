@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+export OPS_MNGR_HOSTNAME=<your-ops-manager-host-name>   # do NOT include http/https or port number
+export TILE_FILE_NAME=<tile-file-name>     # e.g. p-rabbitmq-1.6.4.pivotal
+export PIVNET_TOKEN=<your-token-from-pivnet-profile>
+export TILE_DOWNLOAD_URL=<tile-download-url-from-pivnet>
+export OPS_MNGR_ADMIN_ID=<ops-mngr-admin-user-id>
+export OPS_MNGR_PWD=<ops-mngr-admin-pwd>
+
+wget -O "$TILE_FILE_NAME" --post-data="" --header="Authorization: Token $PIVNET_TOKEN" $TILE_DOWNLOAD_URL
+
+uaac target $OPS_MNGR_HOSTNAME/uaa --skip-ssl-validation
+
+uaac token owner get opsman admin -s "" -p $OPS_MNGR_PWD
+
+export MY_TOKEN=$(uaac context | grep access_token | awk -F": " '{print ""$2""}')
+
+curl -k "https://$OPS_MNGR_HOSTNAME/api/products" -F 'product[file]=@"'$TILE_FILE_NAME'"' -X POST -H "Authorization: Bearer $MY_TOKEN" -v
