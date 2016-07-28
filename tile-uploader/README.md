@@ -18,6 +18,6 @@ Steps to run it:
    export OPS_MNGR_ADMIN_ID=<ops-mngr-admin-user-id>  
    export OPS_MNGR_PWD=<ops-mngr-admin-pwd>  
 ```
-1. Run ```tileupload```
+4. Run ```tileupload```
 
 The tool will download the tile from the Pivotal Network website, get a token for the admin user and then upload the download tile to the Ops Manager blobstore using its API.
