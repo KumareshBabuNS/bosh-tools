@@ -15,8 +15,7 @@ Steps to run it:
    export PIVNET_TOKEN=<your-token-from-pivnet-profile>  
    export TILE_DOWNLOAD_URL=<tile-download-url-from-pivnet>  
    export OPS_MNGR_ADMIN_ID=<ops-mngr-admin-user-id>  
-   export OPS_MNGR_PWD=<ops-mngr-admin-pwd>  
-```  
+   export OPS_MNGR_PWD=<ops-mngr-admin-pwd>```  
 1. Run ```tileupload```
 
 The tool will download the tile from the Pivotal Network website, get a token for the admin user and then upload the download tile to the Ops Manager blobstore using its API.
