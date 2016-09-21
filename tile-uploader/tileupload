@@ -2,6 +2,9 @@
 
 set -e
 
+shopt -s expand_aliases
+source ~/.profile
+
 export OPS_MNGR_HOSTNAME=<your-ops-manager-host-name>   # do NOT include http/https or port number
 export TILE_FILE_NAME=<tile-file-name>     # e.g. p-rabbitmq-1.6.4.pivotal
 export PIVNET_TOKEN=<your-token-from-pivnet-profile>
